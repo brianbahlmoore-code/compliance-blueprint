@@ -240,29 +240,54 @@ kbd {
 }
 
 /* -----------------------------------------------------
+   Status Pills (Live, Coming Soon, In Development)
+------------------------------------------------------ */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.status-live {
+  background: var(--pastel-green-bg);
+  color: var(--pastel-green-text);
+}
+
+.status-soon {
+  background: var(--pastel-yellow-bg);
+  color: var(--pastel-yellow-text);
+}
+
+.status-dev {
+  background: var(--pastel-blue-bg);
+  color: var(--pastel-blue-text);
+}
+
+/* -----------------------------------------------------
    HERO SCROLL-DRIVEN VIDEO
 ------------------------------------------------------ */
 
-/* Scroll-track: tall div that gives scroll room (300vh).
-   The sticky container inside it stays locked to viewport
-   until the full 300vh has been scrolled past. */
 .hero-scroll-track {
   position: relative;
   height: 300vh;
 }
 
-/* Sticky container fills the viewport and stays fixed
-   while the scroll-track div is moving through. */
 .hero-sticky-container {
   position: sticky;
   top: 0;
   height: 100vh;
   width: 100%;
   overflow: hidden;
-  background: #000; /* fallback behind video */
+  background: #000;
 }
 
-/* Video fills the entire sticky container */
 .hero-video {
   position: absolute;
   inset: 0;
@@ -270,12 +295,10 @@ kbd {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  /* Disable any browser-injected UI */
   pointer-events: none;
   user-select: none;
 }
 
-/* Gradient scrim so the text overlay remains legible */
 .hero-scrim {
   position: absolute;
   inset: 0;
@@ -289,7 +312,6 @@ kbd {
   z-index: 1;
 }
 
-/* Hero text overlay — centred on the sticky container */
 .hero-overlay-content {
   position: absolute;
   inset: 0;
@@ -300,7 +322,6 @@ kbd {
   justify-content: center;
   text-align: center;
   padding: 0 var(--px-mobile);
-  /* Push down slightly to account for nav */
   padding-top: 80px;
 }
 
@@ -328,7 +349,6 @@ kbd {
   gap: 16px;
 }
 
-/* Scroll-progress bar: thin line at the very bottom */
 .scroll-progress-track {
   position: absolute;
   bottom: 0;
@@ -346,7 +366,6 @@ kbd {
   transition: width 60ms linear;
 }
 
-/* Bouncing scroll-cue arrow */
 .scroll-cue {
   position: absolute;
   bottom: 32px;
@@ -363,7 +382,6 @@ kbd {
   50%       { transform: translateX(-50%) translateY(6px); opacity: 1; }
 }
 
-/* Hero reveal animation for text children */
 .reveal-hero {
   opacity: 0;
   transform: translateY(16px);
@@ -376,19 +394,163 @@ kbd {
               transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Staggered delays for overlay children */
 .hero-overlay-content .reveal-hero:nth-child(1) { transition-delay: 0ms; }
 .hero-overlay-content .reveal-hero:nth-child(2) { transition-delay: 120ms; }
 .hero-overlay-content .reveal-hero:nth-child(3) { transition-delay: 240ms; }
 .hero-overlay-content .reveal-hero:nth-child(4) { transition-delay: 360ms; }
 
+
 /* -----------------------------------------------------
-   Mockup Chrome
+   PORTFOLIO OVERVIEW SECTION
 ------------------------------------------------------ */
+.portfolio-section {
+  max-width: var(--max-w-content);
+  margin: 0 auto;
+  padding: 120px var(--px-mobile) 80px;
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.portfolio-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+  cursor: pointer;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+}
+
+.portfolio-card:hover .portfolio-arrow {
+  transform: translateX(4px);
+  opacity: 1;
+}
+
+.portfolio-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--bg-canvas);
+  border: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--text-primary);
+}
+
+.portfolio-card-body {
+  flex: 1;
+}
+
+.portfolio-card-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.portfolio-card .card-title {
+  font-size: 1.125rem;
+  margin-bottom: 0;
+}
+
+.portfolio-card .card-desc {
+  margin-bottom: 0;
+}
+
+.portfolio-card .card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.portfolio-arrow {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  opacity: 0.4;
+  transition: transform 200ms ease, opacity 200ms ease;
+}
+
+
+/* -----------------------------------------------------
+   SECTION DIVIDERS
+------------------------------------------------------ */
+.section-divider {
+  max-width: var(--max-w-content);
+  margin: 0 auto;
+  padding: 0 var(--px-mobile);
+  padding-top: 80px;
+  margin-bottom: 48px;
+}
+
+.divider-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-light);
+  width: 100%;
+}
+
+.divider-label i {
+  font-size: 1.1rem;
+}
+
+.section-title-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.section-title-row .section-heading {
+  margin-bottom: 0;
+}
+
+.section-title-row .status-pill {
+  position: relative;
+  top: -2px;
+}
+
+
+/* -----------------------------------------------------
+   TOOL SECTION (wraps mockup, frameworks, kanban)
+------------------------------------------------------ */
+.tool-section {
+  /* No extra wrapping styles needed — children handle their own max-width */
+}
+
+/* Mockup Chrome */
 .mockup-section {
   max-width: var(--max-w-content);
   margin: 0 auto;
-  padding: 80px var(--px-mobile) 160px;
+  padding: 0 var(--px-mobile) 120px;
 }
 
 .faux-os-window {
@@ -546,7 +708,7 @@ kbd {
 .bento-section {
   max-width: var(--max-w-content);
   margin: 0 auto;
-  padding: 0 var(--px-mobile) 160px;
+  padding: 0 var(--px-mobile) 120px;
 }
 
 .bento-grid {
@@ -620,13 +782,206 @@ kbd {
   margin-top: auto;
 }
 
+
+/* -----------------------------------------------------
+   AI AGENTS SECTION
+------------------------------------------------------ */
+.agents-section {
+  /* wrapper only */
+}
+
+.agents-content {
+  max-width: var(--max-w-content);
+  margin: 0 auto;
+  padding: 0 var(--px-mobile) 120px;
+}
+
+.agents-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 600px) {
+  .agents-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.agent-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+  position: relative;
+}
+
+.agent-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+}
+
+.agent-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.agent-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--bg-canvas);
+  border: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: var(--text-primary);
+}
+
+.agent-card .card-title {
+  margin-bottom: 4px;
+}
+
+.agent-card .card-desc {
+  margin-bottom: 0;
+  flex-grow: 1;
+}
+
+.agent-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border-darker);
+  padding-top: 16px;
+  margin-top: auto;
+}
+
+.tech-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  background: var(--bg-canvas);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+
+.tech-badge i {
+  font-size: 0.85rem;
+}
+
+
+/* -----------------------------------------------------
+   CLAUDE SKILLS SECTION
+------------------------------------------------------ */
+.skills-section {
+  /* wrapper only */
+}
+
+.skills-content {
+  max-width: var(--max-w-content);
+  margin: 0 auto;
+  padding: 0 var(--px-mobile) 120px;
+}
+
+.skills-category {
+  margin-bottom: 64px;
+}
+
+.skills-category:last-child {
+  margin-bottom: 0;
+}
+
+.skills-category-title {
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.skills-category-title i {
+  font-size: 1.2rem;
+  color: var(--text-primary);
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .skills-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.skill-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+}
+
+.skill-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.skill-card-title {
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.skill-card-desc {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+.skill-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border-darker);
+  padding-top: 12px;
+  margin-top: auto;
+}
+
+
 /* -----------------------------------------------------
    FAQ Section
 ------------------------------------------------------ */
 .faq-section {
   max-width: 680px;
   margin: 0 auto;
-  padding: 0 var(--px-mobile) 160px;
+  padding: 80px var(--px-mobile) 160px;
 }
 
 .accordion-container {
@@ -712,6 +1067,7 @@ kbd {
 .footer-links {
   display: flex;
   gap: 24px;
+  flex-wrap: wrap;
 }
 
 .footer-links a {
@@ -746,7 +1102,7 @@ kbd {
 .tracker-section {
   max-width: var(--max-w-content);
   margin: 0 auto;
-  padding: 0 var(--px-mobile) 160px;
+  padding: 0 var(--px-mobile) 120px;
 }
 
 .kanban-board {

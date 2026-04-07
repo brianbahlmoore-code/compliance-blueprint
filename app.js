@@ -87,6 +87,22 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
   /* -----------------------------------------------------
+     Smooth Scroll for Navigation Links
+  ------------------------------------------------------ */
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (href === '#') return;
+      
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  /* -----------------------------------------------------
      FAQ Accordion Logic
   ------------------------------------------------------ */
   document.querySelectorAll('.accordion-trigger').forEach(trigger => {
