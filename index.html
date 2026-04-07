@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Compliance Blueprint | Minimalist Program Management</title>
+  <meta name="description" content="The program management tool built specifically to unify different compliance project plans. From ISO 42001 to SOC 2, track evidence and tasks securely.">
+  
+  <!-- Typography Base -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       HERO SCROLL TRACK
+       This div is 300vh tall, giving the sticky hero room to consume
+       scroll distance before the rest of the page appears.
+  ============================================================= -->
+  <div class="hero-scroll-track" id="heroTrack">
+    <div class="hero-sticky-container">
+
+      <!-- Navigation (lives inside sticky so it stays at top) -->
+      <nav class="navbar navbar-video">
+        <div class="nav-brand">Blueprint.</div>
+        <div class="nav-links">
+          <a href="#frameworks">Frameworks</a>
+          <a href="#features">Features</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="nav-cta">
+          <button class="btn-primary">Start Tracking</button>
+        </div>
+      </nav>
+
+      <!-- Full-screen video background -->
+      <video
+        id="scrollVideo"
+        class="hero-video"
+        muted
+        playsinline
+        preload="auto"
+        disablePictureInPicture
+        controlsList="nodownload nofullscreen noremoteplayback"
+      >
+        <source src="fortress_scroll.mp4" type="video/mp4">
+      </video>
+
+      <!-- Gradient scrim so text is legible over video -->
+      <div class="hero-scrim"></div>
+
+      <!-- Hero text overlay -->
+      <div class="hero-overlay-content">
+        <span class="pill-badge pastel-green reveal-hero">New: Auto-Mapping AI</span>
+        <h1 class="headline-editorial reveal-hero">Automate trust, <br/>manage compliance.</h1>
+        <p class="hero-body reveal-hero">
+          The program management tool built specifically to unify different compliance project plans. From ISO 42001 to SOC 2, track evidence and tasks securely.
+        </p>
+        <div class="hero-actions reveal-hero">
+          <button class="btn-primary btn-ghost">View Frameworks</button>
+          <div class="shortcut-tip tip-light">
+            <kbd>Scroll</kbd> <span class="muted-light">to explore</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll progress bar at bottom of hero -->
+      <div class="scroll-progress-track">
+        <div class="scroll-progress-fill" id="scrollProgressBar"></div>
+      </div>
+
+      <!-- Scroll cue arrow -->
+      <div class="scroll-cue" id="scrollCue">
+        <i class="ph ph-arrow-down"></i>
+      </div>
+
+    </div><!-- /.hero-sticky-container -->
+  </div><!-- /.hero-scroll-track -->
+
+
+  <!-- ============================================================
+       REST OF PAGE — appears normally after hero scroll is done
+  ============================================================= -->
+
+  <!-- Faux-OS Window Chrome Mockup -->
+  <section class="mockup-section reveal">
+    <div class="faux-os-window">
+      <div class="faux-os-header">
+        <div class="traffic-lights">
+          <div class="tl-circle"></div>
+          <div class="tl-circle"></div>
+          <div class="tl-circle"></div>
+        </div>
+        <div class="window-title">blueprint-dashboard / compliance / soc-2</div>
+      </div>
+      <div class="faux-os-body">
+        <div class="sidebar-mock">
+          <ul>
+            <li class="active-mock"><i class="ph ph-shield-check"></i> SOC 2 Plan</li>
+            <li><i class="ph ph-lock-key"></i> ISO 27001 Plan</li>
+            <li><i class="ph ph-cpu"></i> ISO 42001 Plan</li>
+            <li><i class="ph ph-scales"></i> NIST CSF</li>
+          </ul>
+        </div>
+        <div class="content-mock">
+          <h2 class="mock-heading">Control CC6.1 - Access Security</h2>
+          <div class="mock-progress">
+             <div class="mock-bar">
+               <div class="mock-fill" style="width: 76%"></div>
+             </div>
+             <span class="mock-mono">76% Evidenced</span>
+          </div>
+          <div class="mock-task">
+            <input type="checkbox" checked />
+            <span class="task-text">Implement MFA across all internal tools.</span>
+            <span class="tag-mock bg-blue">Verified</span>
+          </div>
+          <div class="mock-task">
+            <input type="checkbox" />
+            <span class="task-text">Quarterly access review logging.</span>
+            <span class="tag-mock bg-red">Pending</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bento Grid Section -->
+  <section id="frameworks" class="bento-section reveal">
+    <div class="section-title-wrapper">
+      <h2 class="section-heading">Supported Frameworks</h2>
+      <p class="section-sub">Out-of-the-box management templates for modern compliance.</p>
+    </div>
+
+    <div class="bento-grid">
+      <!-- Card: SOC 2 -->
+      <div class="bento-card bento-wide">
+        <div class="card-header">
+          <i class="ph ph-file-text badge-icon"></i>
+          <span class="pill-badge pastel-blue">Data Security</span>
+        </div>
+        <h3 class="card-title">SOC 2 Type II</h3>
+        <p class="card-desc">Detailed Trust Services Criteria tracking. Keep your auditors satisfied with automated evidence collection and access reviews.</p>
+        <div class="card-footer">
+          <span class="mono-meta">Controls: 64+ mapped</span>
+        </div>
+      </div>
+
+      <!-- Card: ISO 27001 -->
+      <div class="bento-card">
+        <div class="card-header">
+          <i class="ph ph-globe badge-icon"></i>
+          <span class="pill-badge pastel-green">InfoSec</span>
+        </div>
+        <h3 class="card-title">ISO 27001</h3>
+        <p class="card-desc">Manage your entire ISMS program effectively.</p>
+        <div class="card-footer">
+          <span class="mono-meta">Annex A ready</span>
+        </div>
+      </div>
+
+      <!-- Card: ISO 42001 -->
+      <div class="bento-card">
+        <div class="card-header">
+          <i class="ph ph-brain badge-icon"></i>
+          <span class="pill-badge pastel-yellow">AI Risk</span>
+        </div>
+        <h3 class="card-title">ISO 42001</h3>
+        <p class="card-desc">The standard for artificial intelligence management systems.</p>
+        <div class="card-footer">
+          <span class="mono-meta">Emerging standard</span>
+        </div>
+      </div>
+
+      <!-- Card: NIST -->
+      <div class="bento-card bento-wide">
+        <div class="card-header">
+          <i class="ph ph-bank badge-icon"></i>
+          <span class="pill-badge pastel-red">Federal Standard</span>
+        </div>
+        <h3 class="card-title">NIST Posture</h3>
+        <p class="card-desc">Identify, Protect, Detect, Respond, Recover. A structural breakdown of your cybersecurity controls against NIST frameworks.</p>
+        <div class="card-footer">
+          <span class="mono-meta">CSF 2.0 / AI RMF</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Tracker Section -->
+  <section class="tracker-section reveal" id="tracker-preview">
+    <div class="section-title-wrapper" style="text-align: center; margin-bottom: 64px;">
+      <h2 class="section-heading">Interactive Tracker Preview</h2>
+      <p class="section-sub">Experience the SOC 2 AWS Readiness tracker. Click a task to dynamically advance its state.</p>
+    </div>
+    
+    <div class="kanban-board">
+      
+      <!-- Column: Backlog -->
+      <div class="kanban-column">
+        <div class="kanban-column-header">
+          <span class="kanban-title">Backlog</span>
+          <span class="kanban-count">2</span>
+        </div>
+        <div class="kanban-cards" data-status="backlog">
+          <div class="kanban-card">
+            <span class="pill-badge pastel-blue">Data Security</span>
+            <p class="kanban-task-text">Configure AWS WAF rules for public endpoints</p>
+            <div class="kanban-card-footer">
+               <span class="tag-mock bg-blue">CC6.1</span>
+            </div>
+          </div>
+          <div class="kanban-card">
+            <span class="pill-badge pastel-yellow">Risk</span>
+            <p class="kanban-task-text">Set up GuardDuty for continuous threat detection</p>
+            <div class="kanban-card-footer">
+               <span class="tag-mock bg-blue">CC7.2</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Column: In Progress -->
+      <div class="kanban-column">
+        <div class="kanban-column-header">
+          <span class="kanban-title">In Progress</span>
+          <span class="kanban-count">1</span>
+        </div>
+        <div class="kanban-cards" data-status="in-progress">
+          <div class="kanban-card">
+            <span class="pill-badge pastel-red">Identity</span>
+            <p class="kanban-task-text">Enforce MFA for all AWS IAM users</p>
+            <div class="kanban-card-footer">
+               <span class="tag-mock bg-red">HIPAA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Column: Under Review -->
+      <div class="kanban-column">
+        <div class="kanban-column-header">
+          <span class="kanban-title">Under Review</span>
+          <span class="kanban-count">0</span>
+        </div>
+        <div class="kanban-cards" data-status="under-review">
+          <!-- Empty -->
+        </div>
+      </div>
+
+      <!-- Column: Compliant -->
+      <div class="kanban-column">
+        <div class="kanban-column-header">
+          <span class="kanban-title">Compliant</span>
+          <span class="kanban-count">1</span>
+        </div>
+        <div class="kanban-cards" data-status="compliant">
+          <div class="kanban-card">
+            <span class="pill-badge pastel-green">Storage</span>
+            <p class="kanban-task-text">Enable S3 Bucket Default Encryption</p>
+            <div class="kanban-card-footer">
+               <span class="tag-mock bg-blue">CC6.1</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- FAQ Section (Accordion) -->
+  <section class="faq-section reveal" id="faq">
+    <h2 class="section-heading">Common Queries</h2>
+    
+    <div class="accordion-container">
+      <div class="accordion-item">
+        <button class="accordion-trigger">
+          <span class="q-text">Are these templates highly customizable?</span>
+          <i class="ph ph-plus accordion-icon"></i>
+        </button>
+        <div class="accordion-content">
+          <p>Yes. Compliance Blueprint allows you to build custom frameworks or edit existing ones. Add, map, and organize controls exactly as your organization requires.</p>
+        </div>
+      </div>
+      
+      <div class="accordion-item">
+        <button class="accordion-trigger">
+          <span class="q-text">Does it support third-party auditor access?</span>
+          <i class="ph ph-plus accordion-icon"></i>
+        </button>
+        <div class="accordion-content">
+          <p>You can provision read-only 'Auditor' seats, delivering a streamlined, unalterable view of your policies and evidence exactly when the audit window opens.</p>
+        </div>
+      </div>
+      
+      <div class="accordion-item">
+        <button class="accordion-trigger">
+          <span class="q-text">Is my data secure?</span>
+          <i class="ph ph-plus accordion-icon"></i>
+        </button>
+        <div class="accordion-content">
+          <p>We practice what we preach. Compliance Blueprint itself holds SOC 2 Type II and ISO 27001 certifications. Data is encrypted in transit and at rest.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-minimal reveal">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h4>Compliance Blueprint</h4>
+        <p class="muted">Program management tools for <br> modern security frameworks.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
