@@ -121,12 +121,12 @@
         <div class="portfolio-card-body">
           <div class="portfolio-card-top">
             <h3 class="card-title">AI Agents</h3>
-            <span class="status-pill status-soon">Coming Soon</span>
+            <span class="status-pill status-live">Live</span>
           </div>
           <p class="card-desc">Automated agents for audit report analysis, evidence collection, control cross-walking, and risk scoring.</p>
         </div>
         <div class="card-footer">
-          <span class="mono-meta">4 agents planned</span>
+          <span class="mono-meta">SOC 2 Analyzer live</span>
           <i class="ph ph-arrow-right portfolio-arrow"></i>
         </div>
       </a>
@@ -160,200 +160,47 @@
       <span class="divider-label"><i class="ph ph-shield-check"></i> Compliance Program Manager</span>
     </div>
 
-    <!-- Faux-OS Window Chrome Mockup -->
-    <div class="mockup-section reveal">
-      <div class="section-title-wrapper">
-        <div class="section-title-row">
-          <h2 class="section-heading">GRC Tracker</h2>
+    <!-- Compliance Blueprint Program Manager — Live Embed -->
+    <div class="tracker-section reveal" id="tracker-preview">
+      <div class="section-title-wrapper" style="text-align: center; margin-bottom: 64px;">
+        <div class="section-title-row" style="justify-content: center;">
+          <h2 class="section-heading">Compliance Blueprint Program Manager</h2>
           <span class="status-pill status-live">Live</span>
         </div>
-        <p class="section-sub">Full-stack compliance program management with dashboard, Kanban, Gantt, and evidence tracking.</p>
+        <p class="section-sub">Full-stack compliance program management — SOC 2, ISO 27001, ISO 42001, and NIST. Interact with the live tool directly below.</p>
       </div>
-
-      <div class="faux-os-window">
-        <div class="faux-os-header">
+      
+      <div class="faux-os-window iframe-window">
+        <div class="faux-os-header interactive-header">
           <div class="traffic-lights">
             <div class="tl-circle"></div>
             <div class="tl-circle"></div>
             <div class="tl-circle"></div>
           </div>
-          <div class="window-title">blueprint-dashboard / compliance / soc-2</div>
+          <div class="address-bar">
+            <div class="address-bar-inner">
+              <i class="ph ph-lock"></i>
+              <span>brianbahlmoore-code.github.io/SOC2-GRC-AWS-Tracker/</span>
+            </div>
+          </div>
+          <div class="window-actions">
+            <a href="https://brianbahlmoore-code.github.io/SOC2-GRC-AWS-Tracker/" target="_blank" class="btn-icon" title="Open Full Screen">
+              <i class="ph ph-arrow-square-out"></i>
+            </a>
+          </div>
         </div>
         <div class="faux-os-body">
-          <div class="sidebar-mock">
-            <ul>
-              <li class="active-mock"><i class="ph ph-shield-check"></i> SOC 2 Plan</li>
-              <li><i class="ph ph-lock-key"></i> ISO 27001 Plan</li>
-              <li><i class="ph ph-cpu"></i> ISO 42001 Plan</li>
-              <li><i class="ph ph-scales"></i> NIST CSF</li>
-            </ul>
-          </div>
-          <div class="content-mock">
-            <h2 class="mock-heading">Control CC6.1 - Access Security</h2>
-            <div class="mock-progress">
-               <div class="mock-bar">
-                 <div class="mock-fill" style="width: 76%"></div>
-               </div>
-               <span class="mock-mono">76% Evidenced</span>
-            </div>
-            <div class="mock-task">
-              <input type="checkbox" checked />
-              <span class="task-text">Implement MFA across all internal tools.</span>
-              <span class="tag-mock bg-blue">Verified</span>
-            </div>
-            <div class="mock-task">
-              <input type="checkbox" />
-              <span class="task-text">Quarterly access review logging.</span>
-              <span class="tag-mock bg-red">Pending</span>
-            </div>
-          </div>
+          <div class="iframe-spinner" id="trackerSpinner"></div>
+          <iframe 
+            src="https://brianbahlmoore-code.github.io/SOC2-GRC-AWS-Tracker/" 
+            onload="document.getElementById('trackerSpinner').style.display='none';"
+            allow="fullscreen"
+          ></iframe>
         </div>
-      </div>
-    </div>
-
-    <!-- Bento Grid: Supported Frameworks -->
-    <div class="bento-section reveal" id="frameworks">
-      <div class="section-title-wrapper">
-        <h2 class="section-heading">Supported Frameworks</h2>
-        <p class="section-sub">Out-of-the-box management templates for modern compliance.</p>
-      </div>
-
-      <div class="bento-grid">
-        <!-- Card: SOC 2 -->
-        <div class="bento-card bento-wide">
-          <div class="card-header">
-            <i class="ph ph-file-text badge-icon"></i>
-            <span class="pill-badge pastel-blue">Data Security</span>
-          </div>
-          <h3 class="card-title">SOC 2 Type II</h3>
-          <p class="card-desc">Detailed Trust Services Criteria tracking. Keep your auditors satisfied with automated evidence collection and access reviews.</p>
-          <div class="card-footer">
-            <span class="mono-meta">Controls: 64+ mapped</span>
-          </div>
-        </div>
-
-        <!-- Card: ISO 27001 -->
-        <div class="bento-card">
-          <div class="card-header">
-            <i class="ph ph-globe badge-icon"></i>
-            <span class="pill-badge pastel-green">InfoSec</span>
-          </div>
-          <h3 class="card-title">ISO 27001</h3>
-          <p class="card-desc">Manage your entire ISMS program effectively.</p>
-          <div class="card-footer">
-            <span class="mono-meta">Annex A ready</span>
-          </div>
-        </div>
-
-        <!-- Card: ISO 42001 -->
-        <div class="bento-card">
-          <div class="card-header">
-            <i class="ph ph-brain badge-icon"></i>
-            <span class="pill-badge pastel-yellow">AI Risk</span>
-          </div>
-          <h3 class="card-title">ISO 42001</h3>
-          <p class="card-desc">The standard for artificial intelligence management systems.</p>
-          <div class="card-footer">
-            <span class="mono-meta">Emerging standard</span>
-          </div>
-        </div>
-
-        <!-- Card: NIST -->
-        <div class="bento-card bento-wide">
-          <div class="card-header">
-            <i class="ph ph-bank badge-icon"></i>
-            <span class="pill-badge pastel-red">Federal Standard</span>
-          </div>
-          <h3 class="card-title">NIST Posture</h3>
-          <p class="card-desc">Identify, Protect, Detect, Respond, Recover. A structural breakdown of your cybersecurity controls against NIST frameworks.</p>
-          <div class="card-footer">
-            <span class="mono-meta">CSF 2.0 / AI RMF</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Interactive Tracker Section -->
-    <div class="tracker-section reveal" id="tracker-preview">
-      <div class="section-title-wrapper" style="text-align: center; margin-bottom: 64px;">
-        <h2 class="section-heading">Interactive Tracker Preview</h2>
-        <p class="section-sub">Experience the SOC 2 AWS Readiness tracker. Click a task to dynamically advance its state.</p>
-      </div>
-      
-      <div class="kanban-board">
-        
-        <!-- Column: Backlog -->
-        <div class="kanban-column">
-          <div class="kanban-column-header">
-            <span class="kanban-title">Backlog</span>
-            <span class="kanban-count">2</span>
-          </div>
-          <div class="kanban-cards" data-status="backlog">
-            <div class="kanban-card">
-              <span class="pill-badge pastel-blue">Data Security</span>
-              <p class="kanban-task-text">Configure AWS WAF rules for public endpoints</p>
-              <div class="kanban-card-footer">
-                 <span class="tag-mock bg-blue">CC6.1</span>
-              </div>
-            </div>
-            <div class="kanban-card">
-              <span class="pill-badge pastel-yellow">Risk</span>
-              <p class="kanban-task-text">Set up GuardDuty for continuous threat detection</p>
-              <div class="kanban-card-footer">
-                 <span class="tag-mock bg-blue">CC7.2</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Column: In Progress -->
-        <div class="kanban-column">
-          <div class="kanban-column-header">
-            <span class="kanban-title">In Progress</span>
-            <span class="kanban-count">1</span>
-          </div>
-          <div class="kanban-cards" data-status="in-progress">
-            <div class="kanban-card">
-              <span class="pill-badge pastel-red">Identity</span>
-              <p class="kanban-task-text">Enforce MFA for all AWS IAM users</p>
-              <div class="kanban-card-footer">
-                 <span class="tag-mock bg-red">HIPAA</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Column: Under Review -->
-        <div class="kanban-column">
-          <div class="kanban-column-header">
-            <span class="kanban-title">Under Review</span>
-            <span class="kanban-count">0</span>
-          </div>
-          <div class="kanban-cards" data-status="under-review">
-            <!-- Empty -->
-          </div>
-        </div>
-
-        <!-- Column: Compliant -->
-        <div class="kanban-column">
-          <div class="kanban-column-header">
-            <span class="kanban-title">Compliant</span>
-            <span class="kanban-count">1</span>
-          </div>
-          <div class="kanban-cards" data-status="compliant">
-            <div class="kanban-card">
-              <span class="pill-badge pastel-green">Storage</span>
-              <p class="kanban-task-text">Enable S3 Bucket Default Encryption</p>
-              <div class="kanban-card-footer">
-                 <span class="tag-mock bg-blue">CC6.1</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        
       </div>
     </div>
   </section>
+
 
 
   <!-- ============================================================
@@ -368,27 +215,27 @@
       <div class="section-title-wrapper">
         <div class="section-title-row">
           <h2 class="section-heading">Automation Agents</h2>
-          <span class="status-pill status-soon">Coming Soon</span>
+          <span class="status-pill status-live">1 Live</span>
         </div>
         <p class="section-sub">Intelligent agents that automate repetitive compliance and audit tasks. Each agent is purpose-built for a specific workflow.</p>
       </div>
 
       <div class="agents-grid">
-        <!-- Agent 1: SOC 2 Report Analyzer -->
-        <div class="agent-card">
+        <!-- Agent 1: SOC 2 Report Analyzer — LIVE -->
+        <div class="agent-card agent-card-live" id="soc2AgentCard">
           <div class="agent-card-header">
             <div class="agent-icon-wrap">
               <i class="ph ph-file-search"></i>
             </div>
-            <span class="status-pill status-soon">Coming Soon</span>
+            <span class="status-pill status-live">Live</span>
           </div>
           <h3 class="card-title">SOC 2 Report Analyzer</h3>
-          <p class="card-desc">Scans PDF audit reports and extracts key findings, exceptions, and remediation items automatically.</p>
+          <p class="card-desc">Reads SOC 2 audit PDFs and extracts deviations, remediation plans, and mitigating controls using Gemini AI.</p>
           <div class="agent-card-footer">
-            <span class="tech-badge">
-              <i class="ph ph-sparkle"></i> Gemini
-            </span>
-            <span class="mono-meta">PDF Processing</span>
+            <span class="tech-badge"><i class="ph ph-sparkle"></i> Gemini</span>
+            <button class="demo-trigger-btn" id="demoToggleBtn" onclick="toggleDemoPanel()">
+              ✨ Try Demo
+            </button>
           </div>
         </div>
 
@@ -403,9 +250,7 @@
           <h3 class="card-title">Evidence Collector</h3>
           <p class="card-desc">Auto-gathers compliance evidence from cloud infrastructure. Pulls configs, logs, and access policies from AWS.</p>
           <div class="agent-card-footer">
-            <span class="tech-badge">
-              <i class="ph ph-cloud"></i> AWS
-            </span>
+            <span class="tech-badge"><i class="ph ph-cloud"></i> AWS</span>
             <span class="mono-meta">Cloud Integration</span>
           </div>
         </div>
@@ -421,9 +266,7 @@
           <h3 class="card-title">Control Cross-Walker</h3>
           <p class="card-desc">Maps controls across frameworks automatically. SOC 2 to ISO 27001 to NIST CSF with full traceability.</p>
           <div class="agent-card-footer">
-            <span class="tech-badge">
-              <i class="ph ph-sparkle"></i> Claude
-            </span>
+            <span class="tech-badge"><i class="ph ph-sparkle"></i> Claude</span>
             <span class="mono-meta">Framework Mapping</span>
           </div>
         </div>
@@ -439,13 +282,55 @@
           <h3 class="card-title">Risk Scorer</h3>
           <p class="card-desc">Automated risk assessment with severity scoring, likelihood analysis, and prioritized remediation recommendations.</p>
           <div class="agent-card-footer">
-            <span class="tech-badge">
-              <i class="ph ph-sparkle"></i> AI
-            </span>
+            <span class="tech-badge"><i class="ph ph-sparkle"></i> AI</span>
             <span class="mono-meta">Risk Analysis</span>
           </div>
         </div>
       </div>
+
+      <!-- ── NATIVE DEMO PANEL ────────────────────────────────── -->
+      <div class="demo-panel" id="demoPanel">
+        <div class="demo-panel-inner">
+
+          <!-- Panel Header -->
+          <div class="demo-panel-header">
+            <div class="demo-panel-title">
+              <div class="demo-panel-icon"><i class="ph ph-robot"></i></div>
+              <div>
+                <div class="demo-panel-name">SOC 2 Report Analyzer</div>
+                <div class="demo-panel-sub">3 real reports pre-loaded · GitHub · OneTrust · Vanta</div>
+              </div>
+            </div>
+            <button class="demo-close-btn" onclick="toggleDemoPanel()" title="Close demo">
+              <i class="ph ph-x"></i>
+            </button>
+          </div>
+
+          <!-- Chat Log -->
+          <div class="demo-chat-log" id="demoChatLog">
+            <div class="demo-msg demo-msg-agent">
+              <p>Hello! I'm the SOC 2 Agent Analyzer. I have <strong>3 real SOC 2 reports</strong> pre-loaded:</p>
+              <ul style="margin: 10px 0 0 16px; font-size: 13px; color: #6B6861;">
+                <li>GitHub SOC 2 Type II (2025) — 98 pages</li>
+                <li>OneTrust Certification Automation — 57 pages</li>
+                <li>Vanta SOC 2 Type II (2025) — 69 pages</li>
+              </ul>
+              <p style="margin-top:10px">Click <strong>"✨ Do your magic"</strong> and I'll analyze all three, extract deviations, build remediation plans, and generate a unified executive summary.</p>
+            </div>
+          </div>
+
+          <!-- Action Bar -->
+          <div class="demo-action-bar">
+            <button class="demo-magic-btn" id="demoMagicBtn" onclick="runDemoAgent()">
+              <i class="ph ph-sparkle"></i> Do your magic
+            </button>
+            <span class="demo-hint" id="demoHint">Powered by Gemini AI · AICPA 2017 TSC</span>
+          </div>
+
+        </div>
+      </div>
+      <!-- ── END DEMO PANEL ──────────────────────────────────── -->
+
     </div>
   </section>
 
@@ -607,7 +492,7 @@
           <i class="ph ph-plus accordion-icon"></i>
         </button>
         <div class="accordion-content">
-          <p>AI Agents are currently in development. The first batch, including the SOC 2 Report Analyzer and Evidence Collector, will be released in upcoming updates. Follow the repository for release notifications.</p>
+          <p>The SOC 2 Report Analyzer is <strong>live now</strong> — click "✨ Try Demo" in the Agents section to see it in action using real SOC 2 reports from GitHub, OneTrust, and Vanta. Additional agents (Evidence Collector, Control Cross-Walker, Risk Scorer) are in development.</p>
         </div>
       </div>
 

@@ -608,6 +608,93 @@ kbd {
   }
 }
 
+/* -----------------------------------------------------
+   IFRAME COMPONENT UPDATES
+------------------------------------------------------ */
+.faux-os-window.iframe-window {
+  min-height: 700px;
+  position: relative;
+}
+
+.faux-os-window.iframe-window iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 700px;
+  border: none;
+  background: var(--bg-canvas);
+  position: relative;
+  z-index: 2;
+}
+
+.faux-os-window.iframe-window .faux-os-body {
+  padding: 0;
+  display: block; 
+}
+
+.iframe-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border-light);
+  border-top-color: var(--text-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  z-index: 1;
+}
+
+@keyframes spin {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.faux-os-header.interactive-header {
+  position: relative;
+}
+
+.address-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.address-bar-inner {
+  background: var(--bg-canvas);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 4px 16px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.address-bar-inner i {
+  font-size: 0.9rem;
+}
+
+.window-actions {
+  display: flex;
+}
+
+.btn-icon {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  transition: color 200ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.btn-icon:hover {
+  color: var(--text-primary);
+}
+
 .sidebar-mock {
   padding: 24px;
   border-right: 1px solid var(--border-light);
@@ -1181,4 +1268,318 @@ kbd {
   display: flex;
   justify-content: flex-end;
   margin-top: 12px;
+}
+
+/* -----------------------------------------------------
+   AGENT DEMO — Live Card Highlight
+------------------------------------------------------ */
+.agent-card-live {
+  border-color: #D4EDDA;
+  background: linear-gradient(135deg, #FFFFFF 0%, #F6FBF6 100%);
+}
+
+.demo-trigger-btn {
+  background: var(--text-primary);
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-family: var(--font-primary);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 180ms ease, transform 120ms ease;
+  white-space: nowrap;
+}
+
+.demo-trigger-btn:hover {
+  background: #333;
+}
+
+.demo-trigger-btn:active {
+  transform: scale(0.97);
+}
+
+/* -----------------------------------------------------
+   AGENT DEMO — Slide-in Native Panel
+------------------------------------------------------ */
+.demo-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 500ms cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 400ms ease,
+              margin-top 400ms ease;
+  opacity: 0;
+  margin-top: 0;
+}
+
+.demo-panel.demo-panel-open {
+  max-height: 800px;
+  opacity: 1;
+  margin-top: 32px;
+}
+
+.demo-panel-inner {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Panel Header */
+.demo-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg-canvas);
+}
+
+.demo-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.demo-panel-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--text-primary);
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.demo-panel-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.demo-panel-sub {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+
+.demo-close-btn {
+  background: none;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  transition: color 150ms ease, background 150ms ease;
+}
+
+.demo-close-btn:hover {
+  color: var(--text-primary);
+  background: var(--bg-canvas);
+}
+
+/* Chat Log */
+.demo-chat-log {
+  flex: 1;
+  padding: 20px;
+  max-height: 420px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  scroll-behavior: smooth;
+}
+
+.demo-msg {
+  max-width: 90%;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.demo-msg-agent {
+  background: var(--bg-canvas);
+  border: 1px solid var(--border-light);
+  align-self: flex-start;
+  color: var(--text-primary);
+}
+
+.demo-msg-step {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  padding: 3px 0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  max-width: 100%;
+}
+
+.demo-msg-step.step-success {
+  color: #346538;
+}
+
+.demo-msg-step.step-error {
+  color: #9F2F2D;
+}
+
+/* Company summary cards inside chat */
+.demo-company-card {
+  background: var(--bg-canvas);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 12px 16px;
+  align-self: flex-start;
+  width: 100%;
+}
+
+.demo-company-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.demo-company-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.demo-opinion-pill {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.demo-opinion-clean {
+  background: #EDF3EC;
+  color: #346538;
+}
+
+.demo-opinion-qualified {
+  background: #FDEBEC;
+  color: #9F2F2D;
+}
+
+.demo-company-stats {
+  display: flex;
+  gap: 14px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  flex-wrap: wrap;
+}
+
+/* Open Report Button */
+.demo-open-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  background: var(--text-primary);
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background 180ms ease;
+  align-self: flex-start;
+  margin-top: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.demo-open-btn:hover {
+  background: #333;
+}
+
+/* Action Bar */
+.demo-action-bar {
+  padding: 14px 20px;
+  border-top: 1px solid var(--border-light);
+  background: var(--bg-canvas);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.demo-magic-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  background: var(--text-primary);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-family: var(--font-primary);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 180ms ease, transform 120ms ease;
+  white-space: nowrap;
+}
+
+.demo-magic-btn:hover {
+  background: #333;
+}
+
+.demo-magic-btn:active {
+  transform: scale(0.97);
+}
+
+.demo-magic-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.demo-magic-btn i {
+  font-size: 1rem;
+}
+
+.demo-hint {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+
+/* Typing indicator */
+.demo-typing {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 0;
+  align-self: flex-start;
+}
+
+.demo-typing span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--text-secondary);
+  animation: typingBounce 1.2s ease-in-out infinite;
+  opacity: 0.5;
+}
+
+.demo-typing span:nth-child(2) { animation-delay: 0.2s; }
+.demo-typing span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30%            { transform: translateY(-4px); opacity: 1; }
 }
