@@ -1,0 +1,58 @@
+{
+  "reportFile": "SOC2_Unified_Report.html",
+  "summaryData": [
+    {
+      "company": "GitHub, Inc.",
+      "reportType": "Type II",
+      "opinion": "Unqualified",
+      "exceptions": 2,
+      "remediations": 3,
+      "mitigating": 2,
+      "highFindings": 0,
+      "sourceFile": "GitHub.SOC.2.Type.2.Final.Report_2025.pdf"
+    },
+    {
+      "company": "OneTrust, LLC",
+      "reportType": "Type II",
+      "opinion": "Unqualified",
+      "exceptions": 0,
+      "remediations": 3,
+      "mitigating": 3,
+      "highFindings": 0,
+      "sourceFile": "ot-onetrust-certification-automation-2025-soc2-type-2-report.pdf"
+    },
+    {
+      "company": "Vanta Inc.",
+      "reportType": "Type II",
+      "opinion": "Unqualified",
+      "exceptions": 0,
+      "remediations": 2,
+      "mitigating": 2,
+      "highFindings": 0,
+      "sourceFile": "Vanta-2025-SOC-2-Type-2-Report.pdf"
+    }
+  ],
+  "replaySteps": [
+    { "delay": 400,  "text": "🔍 Loading pre-extracted SOC 2 reports..." },
+    { "delay": 600,  "text": "📂 Found **3** demo report(s) to process." },
+
+    { "delay": 800,  "text": "\n─────────────────────────────\n📄 [1/3] **GitHub SOC 2 Type II (2025)**" },
+    { "delay": 500,  "text": "   ✅ Loaded 98 pages from report data" },
+    { "delay": 600,  "text": "   🤖 Analyzing with Gemini AI..." },
+    { "delay": 2200, "text": "   ✅ GitHub, Inc. | SOC 2 Type II | 2 exception(s)" },
+
+    { "delay": 800,  "text": "\n─────────────────────────────\n📄 [2/3] **OneTrust Certification Automation**" },
+    { "delay": 500,  "text": "   ✅ Loaded 57 pages from report data" },
+    { "delay": 600,  "text": "   🤖 Analyzing with Gemini AI..." },
+    { "delay": 2000, "text": "   ✅ OneTrust, LLC | SOC 2 Type II | 0 exception(s)" },
+
+    { "delay": 800,  "text": "\n─────────────────────────────\n📄 [3/3] **Vanta SOC 2 Type II (2025)**" },
+    { "delay": 500,  "text": "   ✅ Loaded 69 pages from report data" },
+    { "delay": 600,  "text": "   🤖 Analyzing with Gemini AI..." },
+    { "delay": 2000, "text": "   ✅ Vanta Inc. | SOC 2 Type II | 0 exception(s)" },
+
+    { "delay": 800,  "text": "\n📝 Generating unified report for 3 organization(s)..." },
+    { "delay": 1200, "text": "   ✅ Saved: **SOC2_Unified_Report.html**" },
+    { "delay": 600,  "text": "\n🎉 **Done! 3/3 reports analyzed.**" }
+  ]
+}

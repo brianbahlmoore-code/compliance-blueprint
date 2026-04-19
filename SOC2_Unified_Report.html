@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOC 2 Unified Executive Summary</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#F8F7F4; --white:#fff; --border:#E5E3DC; --border-strong:#C8C4BA;
+      --text:#1A1A18; --secondary:#6B6861; --muted:#A8A49D;
+      --accent:#1A1A18; --accent-warm:#B45309;
+      --badge-bg:#FEF3C7; --badge-text:#92400E;
+      --high-bg:#FEF2F2; --high-border:#FECACA; --high-text:#991B1B;
+      --med-bg:#FFFBEB; --med-border:#FDE68A; --med-text:#92400E;
+      --low-bg:#F0FDF4; --low-border:#BBF7D0; --low-text:#065F46;
+      --pass-bg:#F0FDF4; --pass-text:#065F46;
+      --fail-bg:#FEF2F2; --fail-text:#991B1B;
+      --blue-bg:#EFF6FF; --blue-border:#BFDBFE; --blue-text:#1E40AF;
+      --purple-bg:#F5F3FF; --purple-border:#DDD6FE; --purple-text:#5B21B6;
+      --shadow:0 1px 3px rgba(0,0,0,.06); --shadow-md:0 4px 12px rgba(0,0,0,.08);
+      --radius:8px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.6}
+    h1,h2,h3{font-family:'DM Serif Display',Georgia,serif;font-weight:400}
+
+    .doc-header{background:var(--white);border-bottom:1px solid var(--border);padding:48px 48px 36px}
+    .header-inner{max-width:960px;margin:0 auto}
+    .header-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+    .header-title{font-family:'DM Serif Display',serif;font-size:38px;color:var(--text);margin-bottom:6px;line-height:1.15}
+    .header-subtitle{color:var(--secondary);font-size:15px;margin-bottom:24px;max-width:700px;line-height:1.5}
+
+    .container{max-width:960px;margin:0 auto;padding:32px 48px 48px}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:32px}
+    .stat{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);text-align:center}
+    .stat-num{font-family:'DM Serif Display',serif;font-size:32px;line-height:1;margin-bottom:6px;color:var(--text)}
+    .stat-num.red{color:#991B1B} .stat-num.amber{color:#92400E} .stat-num.green{color:#065F46}
+    .stat-lbl{font-size:10px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+
+    .exec-summary{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;margin-bottom:32px;line-height:1.7;font-size:13.5px;color:var(--secondary)}
+    .exec-summary strong{color:var(--text)}
+
+    /* Company divider */
+    .company-divider{margin:40px 0 24px;padding:24px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .company-divider-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+    .company-divider h2{font-size:28px;margin-bottom:6px}
+    .company-divider-meta{font-size:13px;color:var(--secondary)}
+    .company-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .pill{display:inline-block;padding:4px 12px;border-radius:4px;font-size:11px;font-weight:500;letter-spacing:.3px}
+    .pill-outline{background:transparent;border:1px solid var(--border-strong);color:var(--secondary)}
+    .pill-accent{background:var(--badge-bg);border:1px solid #FDE68A;color:var(--badge-text)}
+    .pill-pass{background:var(--pass-bg);border:1px solid var(--low-border);color:var(--pass-text)}
+    .pill-fail{background:var(--fail-bg);border:1px solid var(--high-border);color:var(--fail-text)}
+
+    .section{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:20px;overflow:hidden;box-shadow:var(--shadow)}
+    .sec-head{padding:16px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+    .sec-title-wrap{display:flex;align-items:center;gap:10px}
+    .sec-icon{width:30px;height:30px;border:1px solid var(--border);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;background:var(--bg)}
+    .sec-title{font-size:13px;font-weight:600;color:var(--text);font-family:'Inter',sans-serif}
+    .sec-count{font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--muted)}
+    .sec-body{padding:20px 24px}
+
+    .cid{display:inline-block;background:#F1F0F9;border:1px solid #DDD9F5;color:#4B47A0;padding:2px 7px;border-radius:3px;font-size:10px;font-family:'JetBrains Mono',monospace;white-space:nowrap;margin:1px}
+    .sev-badge{display:inline-block;padding:3px 10px;border-radius:3px;font-size:10px;font-family:'JetBrains Mono',monospace;font-weight:500;text-transform:uppercase;letter-spacing:.5px}
+    .sev-high{background:var(--high-bg);border:1px solid var(--high-border);color:var(--high-text)}
+    .sev-medium{background:var(--med-bg);border:1px solid var(--med-border);color:var(--med-text)}
+    .sev-low{background:var(--low-bg);border:1px solid var(--low-border);color:var(--low-text)}
+    .sev-info{background:var(--bg);border:1px solid var(--border);color:var(--secondary)}
+    .pri-badge{display:inline-block;padding:3px 10px;border-radius:3px;font-size:10px;font-family:'JetBrains Mono',monospace;font-weight:500}
+    .pri-immediate{background:var(--high-bg);border:1px solid var(--high-border);color:var(--high-text)}
+    .pri-short{background:var(--med-bg);border:1px solid var(--med-border);color:var(--med-text)}
+    .pri-long{background:var(--low-bg);border:1px solid var(--low-border);color:var(--low-text)}
+    .ctrl-type-badge{display:inline-block;padding:3px 10px;border-radius:3px;font-size:10px;font-family:'JetBrains Mono',monospace;font-weight:500}
+    .ct-preventive{background:var(--blue-bg);border:1px solid var(--blue-border);color:var(--blue-text)}
+    .ct-detective{background:var(--purple-bg);border:1px solid var(--purple-border);color:var(--purple-text)}
+    .ct-corrective{background:var(--low-bg);border:1px solid var(--low-border);color:var(--low-text)}
+    .ct-compensating{background:var(--bg);border:1px solid var(--border);color:var(--secondary)}
+
+    .deviation-card{border:1px solid var(--border);border-radius:var(--radius);padding:18px 22px;margin-bottom:14px;background:var(--white);border-left:3px solid #EF4444}
+    .dev-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px}
+    .dev-left{display:flex;align-items:center;gap:8px}
+    .dev-number{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);font-weight:500}
+    .dev-area{font-size:11px;color:var(--secondary);font-family:'JetBrains Mono',monospace}
+    .dev-control{font-size:14px;font-weight:600;margin-bottom:12px;color:var(--text);font-family:'Inter',sans-serif}
+    .dev-body{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .dev-block{border-radius:6px;padding:12px}
+    .dev-block-exception{background:var(--high-bg);border:1px solid var(--high-border)}
+    .dev-block-conclusion{background:var(--bg);border:1px solid var(--border)}
+    .dev-label{font-size:10px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1px;color:var(--muted);display:block;margin-bottom:4px}
+    .dev-block p{font-size:12.5px;color:var(--secondary);line-height:1.6;margin:0}
+    .no-deviations{display:flex;align-items:center;gap:16px;padding:4px}
+    .no-dev-icon{width:44px;height:44px;border-radius:50%;background:var(--pass-bg);border:2px solid var(--low-border);display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--pass-text);flex-shrink:0}
+    .no-dev-text strong{font-size:14px;display:block;margin-bottom:3px;color:var(--text)}
+    .no-dev-text p{font-size:12.5px;color:var(--secondary);margin:0;line-height:1.5}
+
+    .remediation-card{border:1px solid var(--border);border-radius:var(--radius);padding:18px 22px;margin-bottom:14px;background:var(--white)}
+    .rem-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:8px}
+    .rem-left{display:flex;align-items:center;gap:8px}
+    .rem-number{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);font-weight:500}
+    .rem-effort{font-size:11px;color:var(--secondary);font-family:'JetBrains Mono',monospace}
+    .rem-timeline{font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace}
+    .rem-title{font-size:14px;font-weight:600;margin-bottom:6px;color:var(--text);font-family:'Inter',sans-serif}
+    .rem-desc{font-size:12.5px;color:var(--secondary);margin-bottom:14px;line-height:1.6}
+    .rem-plan{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:14px;margin-bottom:14px}
+    .rem-plan-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+    .rem-plan-label{font-size:10px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+    .rem-plan-finding{font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--muted)}
+    .action-steps{padding-left:18px;display:flex;flex-direction:column;gap:5px}
+    .action-steps li{font-size:12.5px;color:var(--text);line-height:1.6}
+    .rem-footer{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding-top:12px;border-top:1px solid var(--border)}
+    .rem-meta-label{font-size:10px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:2px}
+    .rem-meta-value{font-size:12px;color:var(--text)}
+
+    .mitigating-card{border:1px solid var(--border);border-radius:var(--radius);padding:18px 22px;margin-bottom:14px;background:var(--white);border-left:3px solid #3B82F6}
+    .mit-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px}
+    .mit-left{display:flex;align-items:center;gap:8px}
+    .mit-right{display:flex;align-items:center;gap:12px}
+    .mit-number{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);font-weight:500}
+    .mit-framework{font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--muted);background:var(--bg);border:1px solid var(--border);padding:2px 7px;border-radius:3px}
+    .mit-effectiveness{font-size:11px;color:var(--secondary);font-family:'JetBrains Mono',monospace}
+    .mit-title{font-size:14px;font-weight:600;margin-bottom:4px;color:var(--text);font-family:'Inter',sans-serif}
+    .mit-ref{font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-bottom:8px}
+    .mit-ref strong{color:var(--secondary)}
+    .mit-desc{font-size:12.5px;color:var(--secondary);margin-bottom:12px;line-height:1.6}
+    .mit-guidance{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:12px}
+    .mit-guidance-label{font-size:10px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:5px}
+    .mit-guidance p{font-size:12.5px;color:var(--secondary);line-height:1.6;margin:0}
+
+    .doc-footer{border-top:1px solid var(--border);text-align:center;padding:24px;margin-top:12px;font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--muted)}
+
+    @media print{body{background:#fff}.container{padding:20px}.section,.deviation-card,.remediation-card,.mitigating-card,.company-divider{box-shadow:none;break-inside:avoid}}
+    @media(max-width:700px){.dev-body,.rem-footer{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.container{padding:20px 16px}.doc-header{padding:28px 16px}}
+  </style>
+</head>
+<body>
+
+<div class="doc-header">
+  <div class="header-inner">
+    <div class="header-eyebrow">SOC 2 Unified Executive Summary · AI Generated · April 18, 2026</div>
+    <h1 class="header-title">SOC 2 Audit Analysis</h1>
+    <p class="header-subtitle">3 report(s) analyzed. This document provides a consolidated view of deviations, remediation plans, and mitigating controls across all audited organizations.</p>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">3</div>
+      <div class="stat-lbl">Reports Analyzed</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num red">2</div>
+      <div class="stat-lbl">Total Deviations</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">8</div>
+      <div class="stat-lbl">Remediation Plans</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">7</div>
+      <div class="stat-lbl">Mitigating Controls</div>
+    </div>
+  </div>
+
+  <div class="exec-summary">
+    This unified report consolidates the SOC 2 audit analysis of <strong>3 organization(s)</strong>:
+    <strong>GitHub, Inc.</strong>, <strong>OneTrust, LLC</strong>, <strong>Vanta Inc.</strong>.
+    A total of <strong>2 deviation(s)</strong> were identified, including <strong>1 high-severity finding(s)</strong>. Each deviation below includes a proposed remediation plan and identified mitigating controls.
+  </div>
+
+  
+  <!-- ── Company 1: GitHub, Inc. ─── -->
+  <div class="company-divider">
+    <div class="company-divider-eyebrow">Report 1 of 1</div>
+    <h2>GitHub, Inc.</h2>
+    <div class="company-divider-meta">GitHub Enterprise Cloud</div>
+    <div class="company-pills">
+      <span class="pill pill-outline">SOC 2 Type II</span>
+      <span class="pill pill-outline">October 1, 2024 — March 31, 2025</span>
+      <span class="pill pill-outline">Coalfire Controls, LLC</span>
+      <span class="pill pill-pass">Unqualified Opinion</span>
+      <span class="pill pill-accent">Security</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-head"><div class="sec-title-wrap"><div class="sec-icon">⚠️</div><span class="sec-title">Deviations & Exceptions</span></div><span class="sec-count">2 deviation(s)</span></div>
+    <div class="sec-body">
+    <div class="deviation-card">
+      <div class="dev-header">
+        <div class="dev-left">
+          <span class="dev-number">#1</span>
+          <span class="cid">CC1.4</span>
+          <span class="sev-badge sev-medium">🟡 Medium</span>
+        </div>
+        <span class="dev-area">Personnel Security / Training Compliance</span>
+      </div>
+      <h4 class="dev-control">Hubbers and contractors complete security and privacy awareness training within 45 days of their start date.</h4>
+      <div class="dev-body">
+        <div class="dev-block dev-block-exception"><div class="dev-label">What Was Found</div><p>3 out of a sample of 19 new Hubbers did not complete security and privacy awareness training within the stipulated 45-day deadline.</p></div>
+        <div class="dev-block dev-block-conclusion"><div class="dev-label">Auditor's Conclusion</div><p>The control did not operate effectively for the sampled items.</p></div>
+      </div>
+    </div>
+    <div class="deviation-card">
+      <div class="dev-header">
+        <div class="dev-left">
+          <span class="dev-number">#2</span>
+          <span class="cid">CC2.1</span>
+          <span class="sev-badge sev-high">🔴 High</span>
+        </div>
+        <span class="dev-area">Vulnerability Management / Risk Treatment</span>
+      </div>
+      <h4 class="dev-control">Vulnerabilities that cannot be remediated within the required SLA are handled via the documented exception process.</h4>
+      <div class="dev-body">
+        <div class="dev-block dev-block-exception"><div class="dev-label">What Was Found</div><p>2 out of a sample of 44 vulnerabilities identified during monthly scans that were not remediated within SLA were not handled via the documented exception process.</p></div>
+        <div class="dev-block dev-block-conclusion"><div class="dev-label">Auditor's Conclusion</div><p>The control did not operate effectively for the sampled items.</p></div>
+      </div>
+    </div></div>
+  </div>
+
+  
+  <div class="section">
+    <div class="sec-head"><div class="sec-title-wrap"><div class="sec-icon">📋</div><span class="sec-title">Proposed Remediation Plans</span></div><span class="sec-count">3 plan(s)</span></div>
+    <div class="sec-body">
+    <div class="remediation-card">
+      <div class="rem-header">
+        <div class="rem-left">
+          <span class="rem-number">#1</span>
+          <span class="pri-badge pri-short">Short-term</span>
+          <span class="rem-effort">Effort: Medium</span>
+        </div>
+        <span class="rem-timeline">⏱ 60 days</span>
+      </div>
+      <h4 class="rem-title">Security Awareness Training Delinquency</h4>
+      <p class="rem-desc">Strengthen the enforcement mechanism for onboarding training to ensure 100% compliance within the 45-day window.</p>
+      <div class="rem-plan">
+        <div class="rem-plan-header"><span class="rem-plan-label">Action Plan</span><span class="rem-plan-finding">F-001</span></div>
+        <ol class="action-steps"><li>Step 1: Implement automated Slack/Email notifications at day 15, 30, and 40 for incomplete training.</li><li>Step 2: Configure the IAM system to automatically disable non-compliant accounts at day 46 until training is completed.</li><li>Step 3: Conduct a monthly reconciliation report between HRIS new hires and the Learning Management System (LMS).</li></ol>
+      </div>
+      <div class="rem-footer">
+        <div><div class="rem-meta-label">Owner</div><div class="rem-meta-value">👤 Security Awareness / People Ops</div></div>
+        <div><div class="rem-meta-label">Timeline</div><div class="rem-meta-value">📅 60 days</div></div>
+        <div><div class="rem-meta-label">Evidence Needed</div><div class="rem-meta-value">📋 Post-remediation artifacts</div></div>
+      </div>
+    </div>
+    <div class="remediation-card">
+      <div class="rem-header">
+        <div class="rem-left">
+          <span class="rem-number">#2</span>
+          <span class="pri-badge pri-immediate">Immediate</span>
+          <span class="rem-effort">Effort: Medium</span>
+        </div>
+        <span class="rem-timeline">⏱ 30 days</span>
+      </div>
+      <h4 class="rem-title">Vulnerability Exception Process Failure</h4>
+      <p class="rem-desc">Automate the link between the vulnerability scanning platform and the GRC exception workflow.</p>
+      <div class="rem-plan">
+        <div class="rem-plan-header"><span class="rem-plan-label">Action Plan</span><span class="rem-plan-finding">F-002</span></div>
+        <ol class="action-steps"><li>Step 1: Configure the vulnerability management tool to auto-generate a 'Risk Exception Request' ticket when a vulnerability hits T-minus 5 days of SLA expiration.</li><li>Step 2: Update the Vulnerability Management Standard to require mandatory sign-off from the CISO for any exception exceeding 90 days.</li><li>Step 3: Perform a retrospective review of all current overdue vulnerabilities to ensure they are either remediated or have an active exception.</li></ol>
+      </div>
+      <div class="rem-footer">
+        <div><div class="rem-meta-label">Owner</div><div class="rem-meta-value">👤 Vulnerability Management Engineering</div></div>
+        <div><div class="rem-meta-label">Timeline</div><div class="rem-meta-value">📅 30 days</div></div>
+        <div><div class="rem-meta-label">Evidence Needed</div><div class="rem-meta-value">📋 Post-remediation artifacts</div></div>
+      </div>
+    </div>
+    <div class="remediation-card">
+      <div class="rem-header">
+        <div class="rem-left">
+          <span class="rem-number">#3</span>
+          <span class="pri-badge pri-long">Long-term</span>
+          <span class="rem-effort">Effort: Low</span>
+        </div>
+        <span class="rem-timeline">⏱ Ongoing</span>
+      </div>
+      <h4 class="rem-title">Infrastructure Expansion to AWS</h4>
+      <p class="rem-desc">Ensure the new AWS environment maintains parity with existing Azure/Colocation security controls.</p>
+      <div class="rem-plan">
+        <div class="rem-plan-header"><span class="rem-plan-label">Action Plan</span><span class="rem-plan-finding">F-003</span></div>
+        <ol class="action-steps"><li>Step 1: Validate that AWS CloudTrail and GuardDuty logs are being ingested into the central Splunk SIEM.</li><li>Step 2: Update the annual penetration testing scope to specifically target AWS-hosted components.</li><li>Step 3: Review AWS-specific IAM policies to ensure Principle of Least Privilege is maintained.</li></ol>
+      </div>
+      <div class="rem-footer">
+        <div><div class="rem-meta-label">Owner</div><div class="rem-meta-value">👤 Cloud Security Engineering</div></div>
+        <div><div class="rem-meta-label">Timeline</div><div class="rem-meta-value">📅 Ongoing</div></div>
+        <div><div class="rem-meta-label">Evidence Needed</div><div class="rem-meta-value">📋 Post-remediation artifacts</div></div>
+      </div>
+    </div></div>
+  </div>
+
+  
+  <div class="section">
+    <div class="sec-head"><div class="sec-title-wrap"><div class="sec-icon">🛡️</div><span class="sec-title">Mitigating Controls</span></div><span class="sec-count">2 control(s)</span></div>
+    <div class="sec-body">
+    <div class="mitigating-card">
+      <div class="mit-header">
+        <div class="mit-left">
+          <span class="mit-number">#1</span>
+          <span class="ctrl-type-badge ct-preventive">Preventive</span>
+        </div>
+        <div class="mit-right">
+          <span class="mit-framework">NIST SP 800-53 (AT-2)</span>
+          <span class="mit-effectiveness">Effectiveness: <strong>High</strong></span>
+        </div>
+      </div>
+      <h4 class="mit-title">Conditional Access Policies</h4>
+      <p class="mit-ref">↳ Addresses: <strong>Security Awareness Training Delinquency</strong></p>
+      <p class="mit-desc">Restricts access to sensitive production environments (VPN/Bastion) until the 'New Hire Security Training' attribute is marked as 'Complete' in the identity provider.</p>
+      <div class="mit-guidance"><div class="mit-guidance-label">Implementation Guidance</div><p>Integrate Okta/Azure AD with the LMS to update user attributes upon course completion.</p></div>
+    </div>
+    <div class="mitigating-card">
+      <div class="mit-header">
+        <div class="mit-left">
+          <span class="mit-number">#2</span>
+          <span class="ctrl-type-badge ct-detective">Detective</span>
+        </div>
+        <div class="mit-right">
+          <span class="mit-framework">CIS Control 7</span>
+          <span class="mit-effectiveness">Effectiveness: <strong>High</strong></span>
+        </div>
+      </div>
+      <h4 class="mit-title">Continuous Monitoring Dashboard</h4>
+      <p class="mit-ref">↳ Addresses: <strong>Vulnerability Exception Process Failure</strong></p>
+      <p class="mit-desc">A real-time dashboard in Splunk/Datadog that highlights any vulnerability older than its SLA that does not have a corresponding 'Approved' status in the GRC tool.</p>
+      <div class="mit-guidance"><div class="mit-guidance-label">Implementation Guidance</div><p>Join vulnerability scan data with GRC API data to identify orphans.</p></div>
+    </div></div>
+  </div>
+  
+  <!-- ── Company 2: OneTrust, LLC ─── -->
+  <div class="company-divider">
+    <div class="company-divider-eyebrow">Report 2 of 2</div>
+    <h2>OneTrust, LLC</h2>
+    <div class="company-divider-meta">Certification Automation</div>
+    <div class="company-pills">
+      <span class="pill pill-outline">SOC 2 Type II</span>
+      <span class="pill pill-outline">May 1, 2024 — April 30, 2025</span>
+      <span class="pill pill-outline">Schellman & Company, LLC</span>
+      <span class="pill pill-pass">Unqualified Opinion</span>
+      <span class="pill pill-accent">Security</span><span class="pill pill-accent">Availability</span><span class="pill pill-accent">Confidentiality</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-head"><div class="sec-title-wrap"><div class="sec-icon">⚠️</div><span class="sec-title">Deviations & Exceptions</span></div><span class="sec-count">Clean audit</span></div>
+    <div class="sec-body">
+    <div class="no-deviations">
+      <div class="no-dev-icon">✓</div>
+      <div class="no-dev-text"><strong>No Exceptions Noted</strong><p>The auditor did not identify any deviations during the audit period.</p></div>
+    </div></div>
+  </div>
+
+  
+  <div class="section">
+    <div class="sec-head"><div class="sec-title-wrap"><div class="sec-icon">📋</div><span class="sec-title">Proposed Remediation Plans</span></div><span class="sec-count">3 plan(s)</span></div>
+    <div class="sec-body">
+    <div class="remediation-card">
+      <div class="rem-header">
+        <div class="rem-left">
+          <span class="rem-number">#1</span>
+          <span class="pri-badge pri-short">Short-term</span>
+          <span class="rem-effort">Effort: Low</span>
+        </div>
+        <span class="rem-timeline">⏱ 90 days</span>
+      </div>
+      <h4 class="rem-title">Onboarding Controls Not Tested Due to Zero Hires</h4>
+      <p class="rem-desc">Establish a 'Mock Onboarding' procedure to validate control readiness in periods of low or zero hiring activity.</p>
+      <div class="rem-plan">
+        <div class="rem-plan-header"><span class="rem-plan-label">Action Plan</span><span class="rem-plan-finding">F-001</span></div>
+        <ol class="action-steps"><li>Step 1: Create a dummy employee profile in the HR system.</li><li>Step 2: Execute the full onboarding workflow, including background check simulation and training assignment.</li><li>Step 3: Document the results and have them reviewed by the IMS Committee to ensure the process remains functional.</li></ol>
+      </div>
+      <div class="rem-footer">
+        <div><div class="rem-meta-label">Owner</div><div class="rem-meta-value">👤 Human Resources / Compliance</div></div>
+        <div><div class="rem-meta-label">Timeline</div><div class="rem-meta-value">📅 90 days</div></div>
+        <div><div class="rem-meta-label">Evidence Needed</div><div class="rem-meta-value">📋 Post-remediation artifacts</div></div>
+      </div>
+    </div>
+    <div class="remediation-card">
+      <div class="rem-header">
+        <div class="rem-left">
+          <span class="rem-number">#2</span>
+          <span class="pri-badge pri-long">Long-term</span>
+          <span class="rem-effort">Effort: Medium</span>
+        </div>
+        <span class="rem-timeline">⏱ 180 days</span>
+      </div>
+      <h4 class="rem-title">Concentration Risk on Single Subservice Provider</h4>
+      <p class="rem-desc">Conduct a formal exit strategy and business continuity analysis for the cloud provider.</p>
+      <div class="rem-plan">
+        <div class="rem-plan-header"><span class="rem-plan-label">Action Plan</span><span class="rem-plan-finding">F-002</span></div>
+        <ol class="action-steps"><li>Step 1: Perform a cost-benefit analysis of multi-cloud architecture.</li><li>Step 2: Update the Disaster Recovery plan to include specific procedures for AWS-wide outages.</li><li>Step 3: Conduct a tabletop exercise specifically focused on cloud provider failure.</li></ol>
+      </div>
+      <div class="rem-footer">
+        <div><div class="rem-meta-label">Owner</div><div class="rem-meta-value">👤 DevOps / IT Infrastructure</div></div>
+        <div><div class="rem-meta-label">Timeline</div><div class="rem-meta-value">📅 180 days</div></div>
+        <div><div class="rem-meta-label">Evidence Needed</div><div class="rem-meta-value">📋 Post-remediation artifacts</div></div>
+      </div>
+    </div>
+    <div class="remediation-card">
+      <div class="rem-header">
+        <div class="rem-left">
+          <span class="rem-number">#3</span>
+          <span class="pri-badge pri-short">Short-term</span>
+          <span class="rem-effort">Effort: Medium</span>
+        </div>
+        <span class="rem-timeline">⏱ 120 days</span>
+      </div>
+      <h4 class="rem-title">Manual Evidence Collection for Access Reviews</h4>
+      <p class="rem-desc">Transition from manual spreadsheet-based access reviews to an automated Identity and Access Management (IAM) review tool.</p>
+      <div class="rem-plan">
+        <div class="rem-plan-header"><span class="rem-plan-label">Action Plan</span><span class="rem-plan-finding">F-003</span></div>
+        <ol class="action-steps"><li>Step 1: Evaluate IAM tools that integrate with AWS and Entra ID.</li><li>Step 2: Automate the generation of access reports and approval workflows.</li><li>Step 3: Increase review frequency from annual to quarterly using the automated tool.</li></ol>
+      </div>
+      <div class="rem-footer">
+        <div><div class="rem-meta-label">Owner</div><div class="rem-meta-value">👤 IT Security</div></div>
+        <div><div class="rem-meta-label">Timeline</div><div class="rem-meta-value">📅 120 days</div></div>
+        <div><div class="rem-meta-label">Evidence Needed</div><div class="rem-meta-value">📋 Post-remediation artifacts</div></div>
+      </div>
+    </div></div>
+  </div>
+
+  
+  <div class="section">
+    <div class="sec-head"><div class="sec-title-wrap"><div class="sec-icon">🛡️</div><span class="sec-title">Mitigating Controls</span></div><span class="sec-count">3 control(s)</span></div>
+    <div class="sec-body">
+    <div class="mitigating-card">
+      <div class="mit-header">
+        <div class="mit-left">
+          <span class="mit-number">#1</span>
+          <span class="ctrl-type-badge ct-detective">Detective</span>
+        </div>
+        <div class="mit-right">
+          <span class="mit-framework">NIST SP 800-53</span>
+          <span class="mit-effectiveness">Effectiveness: <strong>High</strong></span>
+        </div>
+      </div>
+      <h4 class="mit-title">Automated Deprovisioning Sync</h4>
+      <p class="mit-ref">↳ Addresses: <strong>Onboarding Controls Not Tested Due to Zero Hires</strong></p>
+      <p class="mit-desc">The identity management system is configured to sync with the HR system to automatically deactivate accounts, which was tested and found effective, mitigating the risk of unauthorized access even if onboarding wasn't tested.</p>
+      <div class="mit-guidance"><div class="mit-guidance-label">Implementation Guidance</div><p>Ensure the Entra ID sync with the HR system is monitored for errors daily.</p></div>
+    </div>
+    <div class="mitigating-card">
+      <div class="mit-header">
+        <div class="mit-left">
+          <span class="mit-number">#2</span>
+          <span class="ctrl-type-badge ct-preventive">Preventive</span>
+        </div>
+        <div class="mit-right">
+          <span class="mit-framework">ISO 27001:2022</span>
+          <span class="mit-effectiveness">Effectiveness: <strong>High</strong></span>
+        </div>
+      </div>
+      <h4 class="mit-title">Cross-Region Data Replication</h4>
+      <p class="mit-ref">↳ Addresses: <strong>Concentration Risk on Single Subservice Provider</strong></p>
+      <p class="mit-desc">Real-time replication of RDS and S3 data to secondary AWS regions (US-WEST-2 and EU-WEST-1) ensures data availability if a primary region fails.</p>
+      <div class="mit-guidance"><div class="mit-guidance-label">Implementation Guidance</div><p>Regularly verify replication lag metrics in CloudWatch.</p></div>
+    </div>
+    <div class="mitigating-card">
+      <div class="mit-header">
+        <div class="mit-left">
+          <span class="mit-number">#3</span>
+          <span class="ctrl-type-badge ct-detective">Detective</span>
+        </div>
+        <div class="mit-right">
+          <span class="mit-framework">CIS Controls v8</span>
+          <span class="mit-effectiveness">Effectiveness: <strong>Medium</strong></span>
+        </div>
+      </div>
+      <h4 class="mit-title">Quarterly IMS Committee Oversight</h4>
+      <p class="mit-ref">↳ Addresses: <strong>Manual Evidence Collection for Access Reviews</strong></p>
+      <p class="mit-desc">The IMS Committee reviews security metrics and internal audit results quarterly, providing a layer of management oversight over manual processes.</p>
+      <div class="mit-guidance"><div class="mit-guidance-label">Implementation Guidance</div><p>Include a specific agenda item for access review status in quarterly meetings.</p></div>
+    </div></div>
+  </div>
+  
+  <!-- ── Company 3: Vanta Inc. ─── -->
+  <div class="company-divider">
+    <div class="company-divider-eyebrow">Report 3 of 3</div>
+    <h2>Vanta Inc.</h2>
+    <div class="company-divider-meta">Vanta Agentic Trust Platform</div>
+    <div class="company-pills">
+      <span class="pill pill-outline">SOC 2 Type II</span>
+      <span class="pill pill-outline">October 1, 2024 — September 30, 2025</span>
+      <span class="pill pill-outline">Schellman & Company, LLC</span>
+      <span class="pill pill-pass">Unqualified Opinion</span>
+      <span class="pill pill-accent">Security</span><span class="pill pill-accent">Availability</span><span class="pill pill-accent">Processing Integrity</span><span class="pill pill-accent">Confidentiality</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-head"><div class="sec-title-wrap"><div class="sec-icon">⚠️</div><span class="sec-title">Deviations & Exceptions</span></div><span class="sec-count">Clean audit</span></div>
+    <div class="sec-body">
+    <div class="no-deviations">
+      <div class="no-dev-icon">✓</div>
+      <div class="no-dev-text"><strong>No Exceptions Noted</strong><p>The auditor did not identify any deviations during the audit period.</p></div>
+    </div></div>
+  </div>
+
+  
+  <div class="section">
+    <div class="sec-head"><div class="sec-title-wrap"><div class="sec-icon">📋</div><span class="sec-title">Proposed Remediation Plans</span></div><span class="sec-count">2 plan(s)</span></div>
+    <div class="sec-body">
+    <div class="remediation-card">
+      <div class="rem-header">
+        <div class="rem-left">
+          <span class="rem-number">#1</span>
+          <span class="pri-badge pri-short">Short-term</span>
+          <span class="rem-effort">Effort: Low</span>
+        </div>
+        <span class="rem-timeline">⏱ 90 days</span>
+      </div>
+      <h4 class="rem-title">Reliance on Subservice Organizations</h4>
+      <p class="rem-desc">Strengthen the vendor oversight program to ensure subservice organization risks are mitigated through robust CUEC mapping.</p>
+      <div class="rem-plan">
+        <div class="rem-plan-header"><span class="rem-plan-label">Action Plan</span><span class="rem-plan-finding">F-001</span></div>
+        <ol class="action-steps"><li>Step 1: Perform a detailed mapping of AWS and MongoDB SOC 2 Complementary User Entity Controls (CUECs) to Vanta internal controls.</li><li>Step 2: Conduct a formal annual review of subservice SOC 2 Type II reports.</li><li>Step 3: Document management's review of any bridge letters for subservice organizations.</li></ol>
+      </div>
+      <div class="rem-footer">
+        <div><div class="rem-meta-label">Owner</div><div class="rem-meta-value">👤 Compliance Team</div></div>
+        <div><div class="rem-meta-label">Timeline</div><div class="rem-meta-value">📅 90 days</div></div>
+        <div><div class="rem-meta-label">Evidence Needed</div><div class="rem-meta-value">📋 Post-remediation artifacts</div></div>
+      </div>
+    </div>
+    <div class="remediation-card">
+      <div class="rem-header">
+        <div class="rem-left">
+          <span class="rem-number">#2</span>
+          <span class="pri-badge pri-short">Short-term</span>
+          <span class="rem-effort">Effort: Medium</span>
+        </div>
+        <span class="rem-timeline">⏱ 180 days</span>
+      </div>
+      <h4 class="rem-title">AI-Generated Customer Data Integrity</h4>
+      <p class="rem-desc">Implement a formal AI Governance framework to ensure the accuracy and reliability of AI-generated Restricted data.</p>
+      <div class="rem-plan">
+        <div class="rem-plan-header"><span class="rem-plan-label">Action Plan</span><span class="rem-plan-finding">F-002</span></div>
+        <ol class="action-steps"><li>Step 1: Define specific accuracy thresholds for AI-generated compliance data.</li><li>Step 2: Implement a periodic 'Human-in-the-loop' (HITL) sampling process to validate AI outputs.</li><li>Step 3: Update the Data Management Policy to include AI-specific data integrity requirements.</li></ol>
+      </div>
+      <div class="rem-footer">
+        <div><div class="rem-meta-label">Owner</div><div class="rem-meta-value">👤 Product Engineering / Security</div></div>
+        <div><div class="rem-meta-label">Timeline</div><div class="rem-meta-value">📅 180 days</div></div>
+        <div><div class="rem-meta-label">Evidence Needed</div><div class="rem-meta-value">📋 Post-remediation artifacts</div></div>
+      </div>
+    </div></div>
+  </div>
+
+  
+  <div class="section">
+    <div class="sec-head"><div class="sec-title-wrap"><div class="sec-icon">🛡️</div><span class="sec-title">Mitigating Controls</span></div><span class="sec-count">2 control(s)</span></div>
+    <div class="sec-body">
+    <div class="mitigating-card">
+      <div class="mit-header">
+        <div class="mit-left">
+          <span class="mit-number">#1</span>
+          <span class="ctrl-type-badge ct-compensating">Compensating</span>
+        </div>
+        <div class="mit-right">
+          <span class="mit-framework">NIST CSF</span>
+          <span class="mit-effectiveness">Effectiveness: <strong>High</strong></span>
+        </div>
+      </div>
+      <h4 class="mit-title">Multi-Region Redundancy</h4>
+      <p class="mit-ref">↳ Addresses: <strong>Reliance on Subservice Organizations</strong></p>
+      <p class="mit-desc">Utilizing multiple AWS Availability Zones and automated failover for MongoDB Atlas to mitigate localized subservice outages.</p>
+      <div class="mit-guidance"><div class="mit-guidance-label">Implementation Guidance</div><p>Ensure the Disaster Recovery plan specifically tests cross-region restoration capabilities.</p></div>
+    </div>
+    <div class="mitigating-card">
+      <div class="mit-header">
+        <div class="mit-left">
+          <span class="mit-number">#2</span>
+          <span class="ctrl-type-badge ct-detective">Detective</span>
+        </div>
+        <div class="mit-right">
+          <span class="mit-framework">ISO 42001</span>
+          <span class="mit-effectiveness">Effectiveness: <strong>Medium</strong></span>
+        </div>
+      </div>
+      <h4 class="mit-title">Automated Output Validation</h4>
+      <p class="mit-ref">↳ Addresses: <strong>AI-Generated Customer Data Integrity</strong></p>
+      <p class="mit-desc">Automated scripts that compare AI-generated data against known schemas and historical data patterns to flag anomalies.</p>
+      <div class="mit-guidance"><div class="mit-guidance-label">Implementation Guidance</div><p>Integrate validation checks into the CI/CD pipeline for any AI model updates.</p></div>
+    </div></div>
+  </div>
+  
+
+</div>
+
+<div class="doc-footer">
+  SOC 2 Unified Executive Summary · AI Generated · April 18, 2026 · 3 report(s)<br>
+  Framework: AICPA 2017 Trust Services Criteria (2022 Revised Points of Focus)
+</div>
+
+</body>
+</html>
